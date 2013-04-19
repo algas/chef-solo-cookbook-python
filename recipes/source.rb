@@ -20,8 +20,11 @@
 
 configure_options = node['python']['configure_options'].join(" ")
 
-packages = value_for_platform_family(
-             "rhel" => ["openssl-devel","bzip2-devel","zlib-devel","expat-devel","db4-devel","sqlite-devel","ncurses-devel","readline-devel"],
+packages = value_for_platform(
+             "debian" => {
+                "5.0.10" => ["libssl-dev","libbz2-dev","zlib1g-dev","libexpat1-dev","libdb4.5-dev","libsqlite3-dev","libncursesw5-dev","libncurses5-dev","libreadline-dev"],
+                "default" => ["libssl-dev","libbz2-dev","zlib1g-dev","libexpat1-dev","libdb4.8-dev","libsqlite3-dev","libncursesw5-dev","libncurses5-dev","libreadline-dev"]},
+             "rhel" => {"default" => ["openssl-devel","bzip2-devel","zlib-devel","expat-devel","db4-devel","sqlite-devel","ncurses-devel","readline-devel"]},
              "default" => ["libssl-dev","libbz2-dev","zlib1g-dev","libexpat1-dev","libdb4.8-dev","libsqlite3-dev","libncursesw5-dev","libncurses5-dev","libreadline-dev"]
            )
 
